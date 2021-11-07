@@ -1,10 +1,10 @@
 package com.example.stopwatch
 
 class ElapsedTimeCalculator(
-    private val timestampProvider: TimestampProvider,
-) {
+    private val timestampProvider: TimestampProviderInterface,
+): ElapsedTimeCalculatorInterface {
 
-    fun calculate(state: StopwatchState.Running): Long {
+    override fun calculate(state: StopwatchState.Running): Long {
         val currentTimestamp = timestampProvider.getMilliseconds()
         val timePassedSinceStart = if (currentTimestamp > state.startTime) {
             currentTimestamp - state.startTime

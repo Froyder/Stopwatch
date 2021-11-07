@@ -5,15 +5,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class StopwatchListOrchestrator(
-    private val stopwatchStateHolder: StopwatchStateHolder,
+    private val stopwatchStateHolder: StopwatchStateHolderInterface,
     private val scope: CoroutineScope,
-) {
+): StopwatchListOrchestratorInterface {
 
     private var job: Job? = null
     private val mutableTicker = MutableStateFlow("")
     val ticker: StateFlow<String> = mutableTicker
 
-    fun start() {
+    override fun start() {
         if (job == null) startJob()
         stopwatchStateHolder.start()
     }
@@ -27,12 +27,12 @@ class StopwatchListOrchestrator(
         }
     }
 
-    fun pause() {
+    override fun pause() {
         stopwatchStateHolder.pause()
         stopJob()
     }
 
-    fun stop() {
+    override fun stop() {
         stopwatchStateHolder.stop()
         stopJob()
         clearValue()

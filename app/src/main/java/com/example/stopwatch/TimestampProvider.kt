@@ -1,5 +1,7 @@
 package com.example.stopwatch
 
-interface TimestampProvider {
-    fun getMilliseconds(): Long
+class TimestampProvider : TimestampProviderInterface {
+    override fun getMilliseconds(): Long {
+        return System.currentTimeMillis()
+    }
 }

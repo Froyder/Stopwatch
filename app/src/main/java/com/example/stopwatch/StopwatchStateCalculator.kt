@@ -1,11 +1,11 @@
 package com.example.stopwatch
 
 class StopwatchStateCalculator(
-    private val timestampProvider: TimestampProvider,
-    private val elapsedTimeCalculator: ElapsedTimeCalculator,
-) {
+    private val timestampProvider: TimestampProviderInterface,
+    private val elapsedTimeCalculator: ElapsedTimeCalculatorInterface,
+): StopwatchStateCalculatorInterface {
 
-    fun calculateRunningState(oldState: StopwatchState): StopwatchState.Running =
+    override fun calculateRunningState(oldState: StopwatchState): StopwatchState.Running =
         when (oldState) {
             is StopwatchState.Running -> oldState
             is StopwatchState.Paused -> {
@@ -16,7 +16,7 @@ class StopwatchStateCalculator(
             }
         }
 
-    fun calculatePausedState(oldState: StopwatchState): StopwatchState.Paused =
+    override fun calculatePausedState(oldState: StopwatchState): StopwatchState.Paused =
         when (oldState) {
             is StopwatchState.Running -> {
                 val elapsedTime = elapsedTimeCalculator.calculate(oldState)

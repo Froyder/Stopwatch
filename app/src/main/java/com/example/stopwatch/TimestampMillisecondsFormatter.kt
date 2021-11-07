@@ -1,8 +1,8 @@
 package com.example.stopwatch
 
-class TimestampMillisecondsFormatter() {
+class TimestampMillisecondsFormatter: TimestampMillisecondsFormatterInterface {
 
-    fun format(timestamp: Long): String {
+    override fun format(timestamp: Long): String {
         val millisecondsFormatted = (timestamp % 1000).pad(3)
         val seconds = timestamp / 1000
         val secondsFormatted = (seconds % 60).pad(2)
