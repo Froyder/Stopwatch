@@ -1,5 +1,6 @@
 package com.example.stopwatch.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -46,6 +47,10 @@ class MainActivity : AppCompatActivity() {
         }
         viewBinding.buttonStop2.setOnClickListener {
             secondViewModel.stop()
+        }
+
+        viewBinding.buttonSearch.setOnClickListener {
+            startActivity(Intent(this, SearchActivity::class.java))
         }
 
     }
