@@ -21,7 +21,7 @@ class StopwatchListOrchestrator(
     private fun startJob() {
         scope.launch {
             while (isActive) {
-                mutableTicker.value = stopwatchStateHolder.getStringTimeRepresentation()
+                mutableTicker.value = stopwatchStateHolder.getStringTime()
                 delay(20)
             }
         }

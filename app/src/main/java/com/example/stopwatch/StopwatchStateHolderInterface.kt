@@ -5,6 +5,6 @@ interface StopwatchStateHolderInterface {
     fun start()
     fun pause()
     fun stop()
-    fun getStringTimeRepresentation(): String
+    fun getStringTime(): String
 
 }

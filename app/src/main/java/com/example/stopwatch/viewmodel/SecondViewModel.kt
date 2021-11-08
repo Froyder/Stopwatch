@@ -8,11 +8,11 @@ import com.example.stopwatch.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 
-class MainViewModel: ViewModel() {
+class SecondViewModel: ViewModel() {
 
-    private val _firstLiveData = MutableLiveData<String>()
-    val firstLiveData: LiveData<String>
-        get() = _firstLiveData
+    private val _secondLiveData = MutableLiveData<String>()
+    val secondLiveData: LiveData<String>
+        get() = _secondLiveData
 
     private val viewModelScope = CoroutineScope(
         Dispatchers.IO
@@ -44,8 +44,8 @@ class MainViewModel: ViewModel() {
         stopwatchListOrchestrator.start()
         job?.cancel()
         job = viewModelScope.launch {
-            stopwatchListOrchestrator.ticker.collect { _firstLiveData.postValue(it)}
-            }
+            stopwatchListOrchestrator.ticker.collect { _secondLiveData.postValue(it) }
+        }
     }
 
     fun stop() {
@@ -61,8 +61,9 @@ class MainViewModel: ViewModel() {
     }
 
     override fun onCleared() {
-        _firstLiveData.value = null
+        _secondLiveData.value = null
         viewModelScope.cancel()
         super.onCleared()
     }
+
 }

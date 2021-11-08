@@ -21,7 +21,7 @@ class StopwatchStateHolder(
         currentState = StopwatchState.Paused(0)
     }
 
-    override fun getStringTimeRepresentation(): String {
+    override fun getStringTime(): String {
         val elapsedTime = when (val currentState = currentState) {
             is StopwatchState.Paused -> currentState.elapsedTime
             is StopwatchState.Running -> elapsedTimeCalculator.calculate(currentState)
